@@ -4,9 +4,9 @@ FROM node:10.3.0-alpine
 
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 
-RUN mkdir /demoapp
-COPY . /demoapp
-WORKDIR /demoapp
+RUN mkdir /app
+COPY . /app
+WORKDIR /app
 
 RUN apk update \
     # Install Chromium (>= 64) which supports Alpine Linux.
@@ -22,6 +22,7 @@ RUN apk update \
     && rm NotoSansCJKjp-hinted.zip \
     && fc-cache -vf \
     #
+    && cp demo/.env.demoapp demo/.env \
     && npm install \
     && rm -rf /var/cache/apk/*
 
