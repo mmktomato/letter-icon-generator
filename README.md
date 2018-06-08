@@ -21,6 +21,8 @@ const png = await generatePng('m', puppeteerOpt);
 
 ```
 $ docker run -dp 1337:1337 mmktomato/letter-icon-generator-demo:latest
+
+# Open `http://localhost:1337`.
 ```
 
 ## Build demo application
@@ -28,7 +30,7 @@ $ docker run -dp 1337:1337 mmktomato/letter-icon-generator-demo:latest
 You can,
 
 * change `Dockerfile` as you like.
-    * e.g. adding font which is your favorite.
+    * e.g. adding some fonts which is your favorite.
 * build your own demo application.
 
 ```
@@ -36,6 +38,8 @@ You can,
 
 $ docker build -t my/letter-icon-generator-demo .
 $ docker run -dp 1337:1337 my/letter-icon-generator-demo
+
+# Open `http://localhost:1337`.
 ```
 
 ## Development
