@@ -6,15 +6,36 @@ Generates a svg or png image. A single letter is on center of the image.
 
 ![Sample](/sample.png)
 
-## Prerequisite
+## Usage
 
-* Node.js (>= 7.6.0)
+You need Node.js (>= 7.6.0).
+
+```
+const { generateSvg, generatePng } = require('./lib/letter-icon-generator.js');
+const puppeteerOpt = ...  // `see demo/.env.template` for example.
+const svg = await generateSvg('m', puppeteerOpt);
+const png = await generatePng('m', puppeteerOpt);
+```
 
 ## Demo application
 
 ```
-$ docker build -t my/letterIconGenerator .
-$ docker run --rm -p 1337:1337 my/letterIconGenerator
+$ docker run -dp 1337:1337 mmktomato/letter-icon-generator-demo:latest
+```
+
+## Build demo application
+
+You can,
+
+* change `Dockerfile` as you like.
+    * e.g. adding font which is your favorite.
+* build your own demo application.
+
+```
+# Open `Dockerfile` and edit it as you like.
+
+$ docker build -t my/letter-icon-generator-demo .
+$ docker run -dp 1337:1337 my/letter-icon-generator-demo
 ```
 
 ## Development
