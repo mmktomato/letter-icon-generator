@@ -2,7 +2,7 @@ require('dotenv').config({ path: './demo/.env' });
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const { generatePng } = require('../lib/letter-icon-generator.js');
+const { generateSvg, generatePng } = require('../lib/letter-icon-generator.js');
 
 const port = process.env.PORT || 8888;
 const puppeteerOpt = process.env.PUPPETEER && JSON.parse(process.env.PUPPETEER);
@@ -14,15 +14,29 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-app.post('/api/png', async (req, res, next) => {
-    const svg = req.body.svg;
-    const png = await generatePng(svg, puppeteerOpt);
+app.get('/api/svg', async (req, res, next) => {
+    const query = parseQueryString(req.query);
+    const svg = await generateSvg(query.letter, puppeteerOpt);
+
+    res.header({
+        'content-type': 'text/plain'
+    });
+    res.send(svg);
+});
+
+app.get('/api/png', async (req, res, next) => {
+    const query = parseQueryString(req.query);
+    const png = await generatePng(query.letter, puppeteerOpt);
     const b64 = 'data:/image/png;base64,' + png.toString('base64');
 
     res.header({
         'content-type': 'text/plain'
     });
     res.send(b64);
+});
+
+const parseQueryString = (query) => ({
+    letter: query.l
 });
 
 app.listen(port, () => {

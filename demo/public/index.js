@@ -5,65 +5,56 @@ document.addEventListener('DOMContentLoaded', (e) => {
 const init = () => {
     document.querySelector('#goBtn').addEventListener('click', async (e) => {
         clear();
+        const letter = document.querySelector('#letterText').value[0];
 
         // svg
-        const letter = document.querySelector('#letterText').value[0];
-        const svg = createSvg(letter);
+        const svg = await fetchSvg(letter);
         getSvgContainer().innerHTML = svg;
 
         // png
-        const png = await fetchPng(svg);
+        const png = await fetchPng(letter);
         const img = document.createElement('img');
         img.setAttribute('src', png);
         getPngContainer().appendChild(img);
     });
-}
+};
 
 const getSvgContainer = () => {
     return document.querySelector('#svgContainer');
-}
+};
 
 const getPngContainer = () => {
     return document.querySelector('#pngContainer');
-}
+};
 
 const clear = () => {
     getSvgContainer().innerHTML = '';
     getPngContainer().innerHTML = '';
-}
+};
 
-const fetchPng = async (svg) => {
-    const data = { svg }
+const createQueryString = (letter) => `?l=${letter}`;
+
+const fetchSvg = async (letter) => {
     try {
-        const res = await fetch('/api/png', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
+        const uri = '/api/svg' + createQueryString(letter);
+        const res = await fetch(uri);
+
         return res.text();
     }
     catch (e) {
         console.error(e);
     }
-}
+};
 
-const createSvg = (letter) => {
-    return `
-<svg width="100px" height="100px" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="100" cy="100" r="100" fill="#ccc"/>
-    <text x="50%"
-        y="50%"
-        text-anchor="middle"
-        dominant-baseline="middle"
-        stroke="#333"
-        stroke-width="1px"
-        style="font-family: NotoSansCJKjp; font-size: 86px"
-    >
-        ${letter}
-    </text>
-</svg>
-`;
-}
+const fetchPng = async (letter) => {
+    try {
+        const uri = '/api/png' + createQueryString(letter);
+        const res = await fetch(uri);
+
+        return res.text();
+    }
+    catch (e) {
+        console.error(e);
+    }
+};
 
