@@ -12,9 +12,12 @@ You need Node.js (>= 7.6.0).
 
 ```
 const { generateSvg, generatePng } = require('./lib/letter-icon-generator.js');
+const shapeOpt = {
+    size: 200
+};
 const puppeteerOpt = ...  // `see demo/.env.template` for example.
-const svg = await generateSvg('m', puppeteerOpt);
-const png = await generatePng('m', puppeteerOpt);
+const svg = await generateSvg('m', shapeOpt);
+const png = await generatePng('m', shapeOpt, puppeteerOpt);
 ```
 
 ## Demo application
