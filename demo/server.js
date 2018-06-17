@@ -14,9 +14,9 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-app.get('/api/svg', async (req, res, next) => {
-    const query = parseQueryString(req.query);
-    const svg = await generateSvg(query.letter, puppeteerOpt);
+app.post('/api/svg', async (req, res, next) => {
+    const params = parseRequestParams(req);
+    const svg = await generateSvg(params.letter, params.shapeOpt);
 
     res.header({
         'content-type': 'text/plain'
@@ -24,9 +24,9 @@ app.get('/api/svg', async (req, res, next) => {
     res.send(svg);
 });
 
-app.get('/api/png', async (req, res, next) => {
-    const query = parseQueryString(req.query);
-    const png = await generatePng(query.letter, puppeteerOpt);
+app.post('/api/png', async (req, res, next) => {
+    const params = parseRequestParams(req);
+    const png = await generatePng(params.letter, params.shapeOpt, puppeteerOpt);
     const b64 = 'data:/image/png;base64,' + png.toString('base64');
 
     res.header({
@@ -35,8 +35,9 @@ app.get('/api/png', async (req, res, next) => {
     res.send(b64);
 });
 
-const parseQueryString = (query) => ({
-    letter: query.l
+const parseRequestParams = (req) => ({
+    letter: req.query.l,
+    shapeOpt: req.body.shapeOpt
 });
 
 app.listen(port, () => {

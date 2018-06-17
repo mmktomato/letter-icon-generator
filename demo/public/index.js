@@ -6,13 +6,16 @@ const init = () => {
     document.querySelector('#goBtn').addEventListener('click', async (e) => {
         clear();
         const letter = document.querySelector('#letterText').value[0];
+        const shapeOpt = {
+            size: document.querySelector('#sizeText').value
+        };
 
         // svg
-        const svg = await fetchSvg(letter);
+        const svg = await fetchSvg(letter, shapeOpt);
         getSvgContainer().innerHTML = svg;
 
         // png
-        const png = await fetchPng(letter);
+        const png = await fetchPng(letter, shapeOpt);
         const img = document.createElement('img');
         img.setAttribute('src', png);
         getPngContainer().appendChild(img);
@@ -34,10 +37,21 @@ const clear = () => {
 
 const createQueryString = (letter) => `?l=${letter}`;
 
-const fetchSvg = async (letter) => {
+const createBody = (shapeOpt) => JSON.stringify({ shapeOpt });
+
+const headers = {
+    Accept: 'application/json',
+    'Content-Type': 'application/json'
+};
+
+const fetchSvg = async (letter, shapeOpt) => {
     try {
         const uri = '/api/svg' + createQueryString(letter);
-        const res = await fetch(uri);
+        const res = await fetch(uri, {
+            method: 'POST',
+            headers,
+            body: createBody(shapeOpt)
+        });
 
         return res.text();
     }
@@ -46,10 +60,14 @@ const fetchSvg = async (letter) => {
     }
 };
 
-const fetchPng = async (letter) => {
+const fetchPng = async (letter, shapeOpt) => {
     try {
         const uri = '/api/png' + createQueryString(letter);
-        const res = await fetch(uri);
+        const res = await fetch(uri, {
+            method: 'POST',
+            headers,
+            body: createBody(shapeOpt)
+        });
 
         return res.text();
     }
