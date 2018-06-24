@@ -2,29 +2,36 @@
 <html>
     <head>
         <meta charset='UTF-8'>
+        <title>Demo App</title>
         <script type='text/javascript' src='./index.js'></script>
+        <link rel='stylesheet' href='./index.css'></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     </head>
     <body>
-        <div>
-            <div>
-                <div>
-                    LETTER
-                    <input type='text' id='letterText' value="L" />
+        <div class='container'>
+            <div class='main'>
+                <div class='options'>
+                    <div class='form-group'>
+                        <label for='letterText'>LETTER</label>
+                        <input type='text' class='form-control' id='letterText' value="L" />
+                    </div>
+                    <div class='form-group'>
+                        <label for='sizeText'>SIZE</label>
+                        <input type='number' class='form-control' id='sizeText' value="200" />
+                    </div>
+                    <button id='goBtn' class='btn btn-primary'>GO !!!</button>
                 </div>
-                <div>
-                    SIZE
-                    <input type='number' id='sizeText' value="200" />
+
+                <div class='row images'>
+                    <div class='col imageContainer'>
+                        <label for='svgContainer'>SVG</label>
+                        <div id='svgContainer'></div>
+                    </div>
+                    <div class='col imageContainer'>
+                        <label for='pngContainer'>PNG</label>
+                        <div id='pngContainer'></div>
+                    </div>
                 </div>
-                <div>
-                    <button id='goBtn'>GO !!!</button>
-                </div>
-            <div>
-                SVG
-                <div id='svgContainer'></div>
-            </div>
-            <div>
-                PNG
-                <div id='pngContainer'></div>
             </div>
         </div>
     </body>
