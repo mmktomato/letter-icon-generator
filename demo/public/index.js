@@ -9,7 +9,8 @@ const init = () => {
         const opt = {
             size: document.querySelector('#sizeText').value,
             fontSize: document.querySelector('#fontSizeText').value,
-            background: document.querySelector('#backgroundText').value
+            background: document.querySelector('#backgroundText').value,
+            foreground: document.querySelector('#foregroundText').value
         };
 
         // svg
