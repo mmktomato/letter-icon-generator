@@ -8,7 +8,8 @@ const init = () => {
         const letter = document.querySelector('#letterText').value[0];
         const opt = {
             size: document.querySelector('#sizeText').value,
-            fontSize: document.querySelector('#fontSizeText').value
+            fontSize: document.querySelector('#fontSizeText').value,
+            background: document.querySelector('#backgroundText').value
         };
 
         // svg

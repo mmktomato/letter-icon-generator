@@ -14,7 +14,8 @@ You need Node.js (>= 7.6.0).
 const { generateSvg, generatePng } = require('./lib/letter-icon-generator.js');
 const opt = {
     size: 200,
-    fontSize: '86pt'
+    fontSize: '86pt',
+    background: '#cccccc'
 };
 const puppeteerOpt = ...  // `see demo/.env.template` for example.
 
