@@ -14,6 +14,7 @@ You need Node.js (>= 7.6.0).
 const { generateSvg, generatePng } = require('./lib/letter-icon-generator.js');
 const opt = {
     size: 200,
+    fontFamily: 'helvetica',
     fontSize: '86pt',
     background: '#cccccc',
     foreground: '#000000'

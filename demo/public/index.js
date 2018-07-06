@@ -8,6 +8,7 @@ const init = () => {
         const letter = document.querySelector('#letterText').value[0];
         const opt = {
             size: document.querySelector('#sizeText').value,
+            fontFamily: document.querySelector('#fontFamilyText').value,
             fontSize: document.querySelector('#fontSizeText').value,
             background: document.querySelector('#backgroundText').value,
             foreground: document.querySelector('#foregroundText').value
