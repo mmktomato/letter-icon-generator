@@ -1,19 +1,15 @@
 # This Dockerfile builds demo app container.
 
-FROM node:10.3.0-alpine
+FROM alpine:3.8
 
+EXPOSE 1337
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 
-RUN mkdir /app
-COPY . /app
 WORKDIR /app
+COPY . /app
 
 RUN apk update \
-    # Install Chromium (>= 64) which supports Alpine Linux.
-    # See. https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md
-    && echo @edge http://nl.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories \
-    && echo @edge http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories \
-    && apk add --no-cache nss@edge chromium@edge curl fontconfig \
+    && apk add --no-cache nodejs npm chromium curl fontconfig \
     #
     # Install Japanese Font
     && curl -O https://noto-website.storage.googleapis.com/pkgs/NotoSansCJKjp-hinted.zip \
@@ -24,8 +20,6 @@ RUN apk update \
     #
     && cp demo/.env.demoapp demo/.env \
     && npm install \
-    && rm -rf /var/cache/apk/*
-
-EXPOSE 1337
+    && apk del --purge curl fontconfig
 
 ENTRYPOINT ["npm", "start"]
