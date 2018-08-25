@@ -16,14 +16,33 @@ $ docker run -dp 1337:1337 mmktomato/letter-icon-generator:latest
 # or you can build your own docker image. See below.
 ```
 
-Second, implement to use the api.
+Second, call the api to generate image.
+
+```
+const uri = 'http://localhost:1337/api/svg?l=m';
+const res = await fetch(uri, {
+    method: 'POST',
+    headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        size: 200,
+        fontFamily: 'helvetica',
+        fontSize: '86pt',
+        background: '#cccccc',
+        foreground: '#000000'
+    })
+});
+console.log(await res.text());
+```
 
 ### Endpoint
 
-|endpoint|explanation|
-|---|---|
-|/api/svg|Generate a svg data|
-|/api/png|Generate a png data|
+| method | endpoint | result                    |
+| ---    | ---      | ---                       |
+| POST   | /api/svg | svg data                  |
+| POST   | /api/png | png data (Base64 encoded) |
 
 ### Parameters
 
