@@ -8,65 +8,69 @@ Generates a svg or png image. A single letter is on center of the image.
 
 ## Usage
 
-You need Node.js (>= 7.6.0).
+First, run a docker container. It provides an api to generate svg and png data.
 
 ```
-const { generateSvg, generatePng } = require('./lib/letter-icon-generator.js');
-const opt = {
-    size: 200,
-    fontFamily: 'helvetica',
-    fontSize: '86pt',
-    background: '#cccccc',
-    foreground: '#000000'
-};
-const puppeteerOpt = ...  // `see demo/.env.template` for example.
+$ docker run -dp 1337:1337 mmktomato/letter-icon-generator:latest
 
-const svg = await generateSvg('m', opt);
-const png = await generatePng('m', opt, puppeteerOpt);
+# or you can build your own docker image. See below.
 ```
 
-## Demo application
+Second, implement to use the api.
+
+| parameter  |       | default value | explanation                          |
+| ---        | ---   | ---           | ---                                  |
+| l          | query |               | A letter to show in generated image. |
+| size       | body  | 200           | Size of image (diameter).            |
+| fontFamily | body  | helvetica     | Font family of the letter.           |
+| fontSize   | body  | 86pt          | Font size of the letter.             |
+| background | body  | #cccccc       | Background color of the image.       |
+| foreground | body  | #000000       | Color of the letter.                 |
+
+See `src/public/demo.js` for example.
+
+### Demo application
+
+A demo application is available in the container.
 
 ```
-$ docker run -dp 1337:1337 mmktomato/letter-icon-generator-demo:latest
+$ docker run -dp 1337:1337 mmktomato/letter-icon-generator:latest
 
-# Open `http://localhost:1337`.
+# Open `http://localhost:1337/demo.html`.
 ```
 
-## Build demo application
+#### Build demo application
 
-You can,
-
-* change `Dockerfile` as you like.
-    * e.g. adding some fonts which is your favorite.
-* build your own demo application.
+You can build youw own demo application. You can install any fonts as you like in your container. So you can use the fonts for generating image.
 
 ```
 # Open `Dockerfile` and edit it as you like.
 
-$ docker build -t my/letter-icon-generator-demo .
-$ docker run -dp 1337:1337 my/letter-icon-generator-demo
+$ docker build -t my/letter-icon-generator .
+$ docker run -dp 1337:1337 my/letter-icon-generator
 
-# Open `http://localhost:1337`.
+# Open `http://localhost:1337/demo.html`.
 ```
 
 ## Development
 
+You need Node.js (>= 8).
+
 Develop with demo application. You can choose two ways about Chrome/Chromium.
 
-### 1. If you want to use Chrome/Chromium installed in your machine
+### a. If you want to use Chrome/Chromium installed in your machine
 
 1. Run `PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true npm install`
-1. Run `cp demo/.env.template demo/.env`
-1. Open `demo/.env` and edit `PUPPETEER` line. Change Chrome/Chromium path to correct one.
+1. Run `cp .env.template .env`
+1. Open `.env` and edit `PUPPETEER` line. Change Chrome/Chromium path to correct one.
 1. Run `npm start`
-1. Open `http://localhost:1337`
+1. Open `http://localhost:1337/demo.html`
 
-### 2. If you want to use Chrome/Chromium installed in node_modules
+### b. If you want to use Chrome/Chromium installed in node_modules
 
 1. Run `npm install`
-1. Run `cp demo/.env.template demo/.env`
-1. Open `demo/.env` and edit `PUPPETEER` line. Follow its comment.
+1. Run `cp .env.template .env`
+1. Open `.env` and edit `PUPPETEER` line. Follow its comment.
 1. Run `npm start`
-1. Open `http://localhost:1337`
+1. Open `http://localhost:1337/demo.html`
 
