@@ -18,6 +18,15 @@ $ docker run -dp 1337:1337 mmktomato/letter-icon-generator:latest
 
 Second, implement to use the api.
 
+### Endpoint
+
+|endpoint|explanation|
+|---|---|
+|/api/svg|Generate a svg data|
+|/api/png|Generate a png data|
+
+### Parameters
+
 | parameter  |       | default value | explanation                          |
 | ---        | ---   | ---           | ---                                  |
 | l          | query |               | A letter to show in generated image. |
@@ -41,13 +50,13 @@ $ docker run -dp 1337:1337 mmktomato/letter-icon-generator:latest
 
 #### Build demo application
 
-You can build youw own demo application. You can install any fonts as you like in your container. So you can use the fonts for generating image.
+You can build your own demo application. You can install any fonts as you like in your container. This means you can use them to generate images.
 
 ```
 # Open `Dockerfile` and edit it as you like.
 
 $ docker build -t my/letter-icon-generator .
-$ docker run -dp 1337:1337 my/letter-icon-generator
+$ docker run -dp 1337:1337 my/letter-icon-generator:latest
 
 # Open `http://localhost:1337/demo.html`.
 ```
