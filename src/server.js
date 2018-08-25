@@ -1,14 +1,14 @@
-require('dotenv').config({ path: './demo/.env' });
+require('dotenv').config({ path: './.env' });
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const { generateSvg, generatePng } = require('../lib/letter-icon-generator.js');
+const { generateSvg, generatePng } = require('./lib/letter-icon-generator.js');
 
-const port = process.env.PORT || 8888;
+const port = process.env.PORT || 1337;
 const puppeteerOpt = process.env.PUPPETEER && JSON.parse(process.env.PUPPETEER);
 const app = express();
 
-app.use(express.static('./demo/public'));
+app.use(express.static('./src/public'));
 app.use(bodyParser.urlencoded({
     extended: true
 }));

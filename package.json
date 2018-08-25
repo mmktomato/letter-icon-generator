@@ -1,6 +1,6 @@
 {
   "name": "letter-icon-generator",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Generates a svg or png image. A single letter is on center of the image.",
   "repository": {
     "type": "git",
@@ -8,15 +8,15 @@
   },
   "main": "lib/letter-icon-generator.js",
   "scripts": {
-    "start": "node demo/server.js"
+    "start": "node src/server.js"
   },
   "author": "Makoto Motohashi <mkt.motohashi@gmail.com> (https://github.com/mmktomato)",
   "license": "MIT",
   "dependencies": {
-    "convert-svg-to-png": "^0.4.0"
-  },
-  "devDependencies": {
+    "convert-svg-to-png": "^0.4.0",
     "dotenv": "^6.0.0",
     "express": "^4.16.3"
+  },
+  "devDependencies": {
   }
 }

@@ -18,7 +18,7 @@ RUN apk update \
     && rm NotoSansCJKjp-hinted.zip \
     && fc-cache -vf \
     #
-    && cp demo/.env.demoapp demo/.env \
+    && cp .env.docker .env \
     && npm install \
     && apk del --purge curl fontconfig
 
