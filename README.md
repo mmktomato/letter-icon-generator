@@ -4,7 +4,9 @@
 
 Generates a svg or png image. A single letter is on center of the image.
 
-![Sample](/sample.png)
+![Sample](https://github.com/mmktomato/letter-icon-generator/raw/master/sample/sample.png)
+![Sample2](https://github.com/mmktomato/letter-icon-generator/raw/master/sample/sample2.png)
+![Sample3](https://github.com/mmktomato/letter-icon-generator/raw/master/sample/sample3.png)
 
 ## Usage
 
