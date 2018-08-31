@@ -82,7 +82,7 @@ $ docker run -dp 1337:1337 my/letter-icon-generator:latest
 
 ### Note
 
-Generating PNG images may take a lot of time fot the firts time.
+Generating PNG images may take a lot of time fot the first time.
 
 ## Development
 
