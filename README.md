@@ -80,6 +80,10 @@ $ docker run -dp 1337:1337 my/letter-icon-generator:latest
 # Open `http://localhost:1337/demo.html`.
 ```
 
+### Note
+
+Generating PNG images may take a lot of time fot the firts time.
+
 ## Development
 
 You need Node.js (>= 8).
