@@ -10,7 +10,7 @@ RUN apk update \
     && apk add --no-cache nodejs npm chromium \
     #
     # Install packages for temporarily needed.
-    && apk add --no-cache nodejs curl fontconfig msttcorefonts-installer \
+    && apk add --no-cache curl fontconfig msttcorefonts-installer \
     #
     # Install Japanese Font
     && curl -O https://noto-website.storage.googleapis.com/pkgs/NotoSansCJKjp-hinted.zip \
