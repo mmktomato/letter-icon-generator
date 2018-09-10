@@ -21,7 +21,12 @@ $ docker run -dp 1337:1337 mmktomato/letter-icon-generator:latest
 Second, call the api to generate image.
 
 ```
+// Endpoint for SVG
 const uri = 'http://localhost:1337/api/svg?l=m';
+
+// Endpoint for PNG
+// const uri = 'http://localhost:1337/api/png?l=m';
+
 const res = await fetch(uri, {
     method: 'POST',
     headers: {
@@ -48,14 +53,14 @@ console.log(await res.text());
 
 ### Parameters
 
-| parameter  |       | default value | explanation                          |
-| ---        | ---   | ---           | ---                                  |
-| l          | query |               | A letter to show in generated image. |
-| size       | body  | 200           | Size of image (diameter).            |
-| fontFamily | body  | helvetica     | Font family of the letter.           |
-| fontSize   | body  | 86pt          | Font size of the letter.             |
-| background | body  | #cccccc       | Background color of the image.       |
-| foreground | body  | #000000       | Color of the letter.                 |
+| parameter  |       | default value | type   | explanation                          |
+| ---        | ---   | ---           | ---    | ---                                  |
+| l          | query |               | string | A letter to show in generated image. |
+| size       | body  | 200           | number | Size of image (diameter).            |
+| fontFamily | body  | helvetica     | string | Font family of the letter.           |
+| fontSize   | body  | 86pt          | string | Font size of the letter.             |
+| background | body  | #cccccc       | string | Background color of the image.       |
+| foreground | body  | #000000       | string | Color of the letter.                 |
 
 See `src/public/demo.js` for example.
 
